@@ -50,12 +50,12 @@ document.onkeyup = function (event) {
             }
 
             //Put letter that doesn't match in letter already guessed
-           
+
 
             else if (dashArray[j] === '_') {
-            
+
                 LettersAlreadyGuessed.push(userGuess);
-                
+
             }
 
         }
@@ -90,6 +90,24 @@ document.onkeyup = function (event) {
         LettersAlreadyGuessed = [];
     }
 
+    else if (GuessesRemaining < 0 ) {
+        // reset the game 
+        choice = game[Math.floor(Math.random() * game.length)];
+
+        dashArray = [];
+
+        for (i = 0; i < choice.length; i++) {
+            dashArray.push('_');
+        }
+
+        remainingletters = choice.length;
+
+        //Creating variables that holds "Wins", "# of guesses remaining", "Letters Already Guessed"
+
+        GuessesRemaining = 10;
+        LettersAlreadyGuessed = [];
+    }
+
     //display on HTML
     var targetDiv = document.getElementById("empty");
 
@@ -97,9 +115,9 @@ document.onkeyup = function (event) {
     var newDiv = document.createElement("div");
 
     //Give this new div a text
-    newDiv.textContent = "Current word: " + dashArray + " " + 
-        "wins: " + wins + " " + 
-        "# of Guesses Remaning " + GuessesRemaining + " " + 
+    newDiv.textContent = "Current word: " + dashArray + " " +
+        "wins: " + wins + " " +
+        "# of Guesses Remaining " + GuessesRemaining + " " +
         "Letters Already Guessed " + LettersAlreadyGuessed + " ";
 
     //Combine the two Divs together on the page
